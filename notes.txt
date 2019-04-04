@@ -1,0 +1,32 @@
+ex2 -
+
+	The sigmoid function can give you the probability of an event.
+
+	prob = sigmoid([1 45 85] * theta);
+
+	What is the probability a student with exam scores 45 and 85 will get in?
+
+	------------------------
+	For regularized logistic regression, it uses the same equation as logist regression except an additional sum.
+	When we calculate the cost and gradient descent, we ignore theta 0. 
+	For the cost calculation, when we sum up the theta squares, we do not include theta 0.
+	For the gradient descent, all features, except the first one, will we calculate the gradient descent. The gradient descent for the first theta is just the logistic gradient descent calculation.
+	------------------------
+	Lambda:
+	A large lambda value would make the thetas count less towards the model. Too large lambda, meaning we want the thetas to have less effect, you end up with only theta0. Underfitting.
+	A small lambda, you get a really good fit with the data. This would result in overfitting the data. The equation is almost perfect, which is unreasonable.
+
+ex3 - 
+
+    We start with the one-vs-all classifier. 
+	    First, with the existing data set we train by calculate the best theta. For each class label (in this case it's numbers 1 to K=10), we apply regularized logistic regression to the data set. fmincg is used to find the minimum cost of the function (in this case the regularized logistic function) and with it we can find the best thetas used for each class label. The best thetas are found by finding the lowest cost of the function. The lowest cost really tells you how well the equation fits the data.
+	    With the thetas, we can calculate h(x), which gives you the probability of an event (for the sigmoid function, see ex2).
+
+	    So for each class label, we have the "best" theta values. 
+	    For each training sample (each row), we need to calculate h(x) by multiplying the training sample by the theta values for each class.
+	    So we are getting the probability (h(c)) for each training sample for each class label. The matrix multiplication will work this out and the max function will tell you the column index with the max value. The max column index will be the class label with the best probability.
+
+    	Overall summary-
+    	We trained our thetas for each class using the existing data. With the thetas for each class, we can determine the probability of a sample belonging to a certain class. We are basically creating an equation that best fits the data and applying that equation to a sample.
+
+    predict.m is interesting because we apply logistic regression twice. The idea is similar to one-vs-all classifier, where we have the "best" theta values and we apply that to the data X. For each row sample x, we multiply it by the thetas for each class, which give us the probability of the chance of that class being true (applying sigmoid too). Once we do that, we get a matrix that looks similar to X, except each column represents h(x) for a class and each row represents each row in X, which is just each x value for a given row sample (x0,x1,x2...). So we then get a matrix that is dimensions num samples in X by num classes. What is interesting is that when we apply logistic regression to it a second time, the x values now become h(x) values. The number of rows never actually change... At the end, we then figure out which class has the max probability, and that becomes our prediction.
