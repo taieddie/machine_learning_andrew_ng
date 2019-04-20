@@ -79,16 +79,14 @@ for each_feature = 1:m
     temp = y_zeros;
     temp(digit_index_1) = 1;
     
-    first_part = temp .* log(output(each_feature,:))';
-    
-    %cost = cost + sum(first_part); 
+    first_part = temp * log(output(each_feature,:));
     
     % Not as easy because it is 1 - y(i)k
     second_part_1 = 1 - temp;
     
     second_part_2 = log(1 - output(each_feature,:))';
     
-    cost = cost + sum(first_part) + sum(-1.*second_part_1.*second_part_2);
+    cost = cost + sum(-1.*second_part_1.*second_part_2);
     
     
     
@@ -117,13 +115,13 @@ for each_feature = 1:m
     
     cost = cost + sum(-1.*second_part_1.*second_part_2);
     
-   %}
+   
     
 end
 
 
-     
-J = cost / m;
+     %}
+J = cost;
 
 
 
