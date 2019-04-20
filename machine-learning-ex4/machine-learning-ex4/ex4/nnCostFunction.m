@@ -76,10 +76,14 @@ for each_feature = 1:m
     
     digit_index_1 = y(each_feature);
     
+    %{ 
+    This block of code does the entire multiplication, rather than
+    skipping the ones that aren't needed because the y values are zero for
+    labels that aren't the predicted value
     temp = y_zeros;
     temp(digit_index_1) = 1;
     
-    first_part = temp .* log(output(each_feature,:))';
+    first_part = -1 .* temp .* log(output(each_feature,:))';
     
     %cost = cost + sum(first_part); 
     
@@ -89,22 +93,12 @@ for each_feature = 1:m
     second_part_2 = log(1 - output(each_feature,:))';
     
     cost = cost + sum(first_part) + sum(-1.*second_part_1.*second_part_2);
+    %}
     
+    % We just need to calculate h(x) for label y(feature)
+    % because y is just zero for the other labels
+    first_part = -1 * log(output(each_feature,digit_index_1));
     
-    
-    
-    
-    
-    
-    
-    
-    %{
-    first_part = log(output(each_feature,digit_index_1));
-    
-    
-    
-    
-    % We on
     cost = cost + first_part; 
     
     temp = y_zeros;
@@ -116,8 +110,7 @@ for each_feature = 1:m
     second_part_2 = log(1 - output(each_feature,:))';
     
     cost = cost + sum(-1.*second_part_1.*second_part_2);
-    
-   %}
+    %}
     
 end
 
