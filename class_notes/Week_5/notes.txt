@@ -1,0 +1,45 @@
+
+Backpropagation Intuition -
+
+	Forward Propagation:
+	And so this cost(i) measures how well is the network doing on correctly predicting example i.
+	He is just explaining how we take the difference between the h(x) and y values. This gives you the "cost" and we then take the average of that by summing and dividing by m. The cost in this case is the log function, rather then the very simple h(x) - y.
+
+	He talks about the delta for each node or the "error" of cost for a_j_l. 
+	The error of cost for each node is the omegas times the error of cost for each node that the current node is connected to.
+	This makes sense because delta is the difference between the actual and the predicted. So there must be 
+	some kind of connection between the delta and the omega values.
+	
+	The quiz at the end of the lecture is tricky but d(3)1 really depends on omega * d(4)1. So the values of d(2)1 or d(2)2 don't really matter.
+	
+Backpropagation in Practice -
+	
+	He is using a way to determine if gradient descent is being calculated correctly (gradient checking).
+	A random theta value is taken and points theta - epislon and theta + epislon are used. Then, the slope of those two points are taking, which is J(theta-epison) + J(theta+epison)/ 2*epislon.
+	He compares J(theta-epison) + J(theta+epison)/ 2*epislon and D_vec (derivative of cost function). It should be close, off by a couple decimal places. This allows us to error check.
+	
+	Disable gradient checking when we are confident that the implementation is correct. We should not be doing gradient descient checking when we are training out classifier. It is computationally expensive.
+	
+	Numeric gradient descient (gradient checking) is very slow.
+	
+Random Initialization -
+	
+	Used for symmetry breaking. Thetas are randomly set between -epsilon to epsilon.
+	
+Putting it together -
+
+	Training a Neural Network:
+	1. Initialize weights to random values
+	2. Implement forward propagation to get h(x) for any x(i)
+	3. Implement the cost function
+	4. Implement backpropgation to compute the partial derivatives
+	5. Use gradient checking to confirm backprogagation works correctly. Disable gradient checking once everything looks good
+	6. Use gradient descient or a built-in optimization function to minimize the cost function with respect to the weights in theta.
+	
+	Plot gradient descient, with respect to the number of iteration, and make sure the cost function is decreasing (not increasing).
+	You do not want to plot the cost with respect to theta because there could be many theta values and it would be too time consuming and messy.
+	
+	
+	
+	
+	
