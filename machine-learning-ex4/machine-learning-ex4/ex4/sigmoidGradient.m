@@ -13,16 +13,11 @@ g = zeros(size(z));
 %               each value of z (z can be a matrix, vector or scalar).
 
 
+% The sigmoid gradient function is given by - g(z)*(1-g(z)),
+% where g(z) = sigmoid(z) = 1 / 1 + e^-z
 
 
-
-
-
-
-
-
-
-
+g = sigmoid(z) .* (1 - sigmoid(z));
 
 
 % =============================================================

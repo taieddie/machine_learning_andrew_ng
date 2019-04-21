@@ -37,4 +37,5 @@ ex3 -
  	For the cost function, since yk(i) is a vector such as [0 0 0 1 .. 0 0], where 1 is the true value of the given sample, we don't need to do the entire multiplication for the first part (-yk(i) * log((h(x(i))k)). The reason is because those y values are zeros. We just need to do the multiplication for the yth label. 
  	For regularization, we need to make sure not to include the bias unit (the first column) for each theta
 
- 
+ 	Backpropagation -
+ 	
