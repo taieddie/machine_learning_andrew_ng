@@ -30,3 +30,11 @@ ex3 -
     	We trained our thetas for each class using the existing data. With the thetas for each class, we can determine the probability of a sample belonging to a certain class. We are basically creating an equation that best fits the data and applying that equation to a sample.
 
     predict.m is interesting because we apply logistic regression twice. The idea is similar to one-vs-all classifier, where we have the "best" theta values and we apply that to the data X. For each row sample x, we multiply it by the thetas for each class, which give us the probability of the chance of that class being true (applying sigmoid too). Once we do that, we get a matrix that looks similar to X, except each column represents h(x) for a class and each row represents each row in X, which is just each x value for a given row sample (x0,x1,x2...). So we then get a matrix that is dimensions num samples in X by num classes. What is interesting is that when we apply logistic regression to it a second time, the x values now become h(x) values. The number of rows never actually change... At the end, we then figure out which class has the max probability, and that becomes our prediction.
+
+
+ ex4 -
+
+ 	For the cost function, since yk(i) is a vector such as [0 0 0 1 .. 0 0], where 1 is the true value of the given sample, we don't need to do the entire multiplication for the first part (-yk(i) * log((h(x(i))k)). The reason is because those y values are zeros. We just need to do the multiplication for the yth label. 
+ 	For regularization, we need to make sure not to include the bias unit (the first column) for each theta
+
+ 

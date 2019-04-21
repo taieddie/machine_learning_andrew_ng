@@ -73,7 +73,6 @@ hidden_layer = [ones(m, 1) hidden_layer];
 output = sigmoid(hidden_layer*Theta2');
 
 for each_feature = 1:m
-    
     digit_index_1 = y(each_feature);
     
     %{ 
@@ -111,19 +110,20 @@ for each_feature = 1:m
     
     cost = cost + sum(-1.*second_part_1.*second_part_2);
     %}
-    
 end
-
 
      
 J = cost / m;
 
+% Add regularization
+% Need to make sure not to include the bias unit, which is the first column
+theta_1_squared = Theta1(:,2:end).^2;
+theta_1_sum = sum(theta_1_squared(:));
+theta_2_squared = Theta2(:,2:end).^2;
+theta_2_sum = sum(theta_2_squared(:));
+regularization_calculation = (theta_1_sum+theta_2_sum) * (lambda / (2*m));
 
-
-
-
-
-
+J = J + regularization_calculation;
 
 
 % -------------------------------------------------------------
