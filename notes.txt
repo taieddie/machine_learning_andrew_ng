@@ -41,4 +41,5 @@ ex3 -
  	Random initialization of weights for theta - 
  		A good way to initialize epsilon is to set it to = (root 6) / (root (L_in + L_out)), where L_in = number of units in current layer and L_out is the number of units in the adjacent layer
 
- 	
+ 	The error term is calculated for layers 2:L. i and j are the units for layer l and layer l + 1 respectively. g'(z_2) is also equal to a_2 * (1 - a_2). 
+ 	For regularization, we skip the bias unit or the first column of theta.
