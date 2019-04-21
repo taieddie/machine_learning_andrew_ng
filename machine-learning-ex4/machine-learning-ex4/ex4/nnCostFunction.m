@@ -70,7 +70,7 @@ cost = 0;
 hidden_layer = sigmoid(X*Theta1');
 hidden_layer = [ones(m, 1) hidden_layer];
 % For each class, multiply the theta by h(x)
-output = sigmoid(hidden_layer*Theta2');
+h_x = sigmoid(hidden_layer*Theta2');
 
 for each_feature = 1:m
     digit_index_1 = y(each_feature);
@@ -96,7 +96,7 @@ for each_feature = 1:m
     
     % We just need to calculate h(x) for label y(feature)
     % because y is just zero for the other labels
-    first_part = -1 * log(output(each_feature,digit_index_1));
+    first_part = -1 * log(h_x(each_feature,digit_index_1));
     
     cost = cost + first_part; 
     
@@ -106,7 +106,7 @@ for each_feature = 1:m
     % Not as easy because it is 1 - y(i)k
     second_part_1 = 1 - temp;
     
-    second_part_2 = log(1 - output(each_feature,:))';
+    second_part_2 = log(1 - h_x(each_feature,:))';
     
     cost = cost + sum(-1.*second_part_1.*second_part_2);
     %}
@@ -124,6 +124,48 @@ theta_2_sum = sum(theta_2_squared(:));
 regularization_calculation = (theta_1_sum+theta_2_sum) * (lambda / (2*m));
 
 J = J + regularization_calculation;
+
+
+
+% Backpropagation
+% a_1 = x
+% z_2 = theta_1 * a_1
+% a_2 = g(z_2)
+% z_3 = theta_2 * a_2
+% a_3 = g(z_3) = h(x)
+
+delta_2 = zeros(size(Theta1,1), size(X,2));
+
+for each_feature = 1:m
+    digit_index_1 = y(each_feature);
+    
+    a_1 = X(each_feature,:);
+    
+    %a_2 = sigmoid(a_1*Theta1');
+    %a_2 = [1 a_2];
+    
+    % Don't recalculate
+    a_2 = hidden_layer(each_feature,:);
+  
+    %a_3 = sigmoid(a_2*Theta2');
+    % Don't recalculate
+    a_3 = h_x(each_feature,:);
+    
+    y_k = y_zeros;
+    y_k(digit_index_1) = 1;
+    
+    d_3 = a_3' - y_k;
+    
+    % Go backwards
+    d_2 = (Theta2'*d_3).*(a_2.*(1-a_2))';
+    
+    Theta1_grad = Theta1_grad + (d_2(2:end) * a_1);
+    Theta2_grad = Theta2_grad + (d_3 * a_2);
+    
+end
+
+Theta1_grad = Theta1_grad ./ m;
+Theta2_grad = Theta2_grad ./ m;
 
 
 % -------------------------------------------------------------

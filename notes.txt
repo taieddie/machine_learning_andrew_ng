@@ -38,4 +38,7 @@ ex3 -
  	For regularization, we need to make sure not to include the bias unit (the first column) for each theta
 
  	Backpropagation -
+ 	Random initialization of weights for theta - 
+ 		A good way to initialize epsilon is to set it to = (root 6) / (root (L_in + L_out)), where L_in = number of units in current layer and L_out is the number of units in the adjacent layer
+
  	
