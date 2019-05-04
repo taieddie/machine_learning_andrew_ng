@@ -50,10 +50,24 @@ ex3 -
 
  	
 Bias vs Variance
-	High bias means that the thetas is underfitting the training data.
+	High bias means that the thetas are underfitting the training data.
 		J_train(theta) will be high and J_train(theta) ~ J_cv(theta)
-	High variance means that the thetas is overfitting the training data.
+	High variance means that the thetas are overfitting the training data.
 		J_train(theta) will be low, but J_cv(theta) >> J_train(theta)
+
+	Increasing the degree d of the polynomial will make the training error go down because we get a better fit. However, the cross validation error will tend to decrease up to a certain point, and then increase... forming a convex curve.
+
+	Getting more training examples will help with high variance, but not high bias.
+
+	The test error and train error curves are similar to high bias vs high variance. 
+	Test error refers to J_cv(theta) actually
+	High bias -
+		Low training set size: J_train(theta) is low and J_cv(theta) is high
+		High training data size: J_train(theta) and J_cv(theta) are high with J_train(theta) ~= J_cv(theta)
+	High variance -
+		Low training data size: J_train(theta) is low and J_vc(theta) is high
+		High training data size: J_train(theta) increases and J_cv(theta) decreases and levels off. J_train(theta) is < J_cv(theta), but the difference between them remains significant.
+
 	Cases -
 	1. Getting more training examples: Helps with fixing high variance because the error curve for the cross validation data set decreases when we get more examples. Whereas the error curve for the training data increases. We want to decrease the cross validation error because it helps us train new examples better.
 	2. Getting smaller sets of features: Decreasing the number of thetas. Aka, making the data fit less. Addresses overfitting or high variance.
@@ -70,6 +84,7 @@ Bias vs Variance
 		1. Getting more training examples
 		2. Getting smaller sets of features
 		6. Increasing lamda
+
 
 
 	Neural network with fewer parameters vs more parameters.
