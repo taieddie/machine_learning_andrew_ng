@@ -95,3 +95,6 @@ Bias vs Variance
 		The model is more prone to overfitting. 
 		Computationally more expensive.
 		We can mitigate overfitting by increasing lambda (for regularization).
+
+ex5 - 
+	The training error and validation error are calculated using the linear regression function. when we select lambda for cross validation, the lambda is only used for calculating the cost and the thetas values. The training error and validation error do not use the lambda value.

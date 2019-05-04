@@ -40,10 +40,9 @@ error_val = zeros(length(lambda_vec), 1);
 %
 for i = 1:length(lambda_vec)
     lambda = lambda_vec(i);
-    thetas = trainLinearReg(X, y, lambda); % Lambda only needed here
-    
-    error_train(i) = linearRegCostFunction(X, y, thetas, 0); % Lambda not needed  
-    error_val(i) = linearRegCostFunction(Xval, yval, thetas, 0); % Lambda not needed   
+    thetas = trainLinearReg(X, y, lambda);
+    error_train(i) = linearRegCostFunction(X, y, thetas, lambda); 
+    error_val(i) = linearRegCostFunction(Xval, yval, thetas, lambda);   
 end
 
 
