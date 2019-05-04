@@ -49,3 +49,34 @@ ex3 -
  	Increasing the number of iterations, which decreases the cost (as seen on console), improves our accuracy also. This makes sense because we would getting better theta values because the cost is decreasing.
 
  	
+Bias vs Variance
+	High bias means that the thetas is underfitting the training data.
+		J_train(theta) will be high and J_train(theta) ~ J_cv(theta)
+	High variance means that the thetas is overfitting the training data.
+		J_train(theta) will be low, but J_cv(theta) >> J_train(theta)
+	Cases -
+	1. Getting more training examples: Helps with fixing high variance because the error curve for the cross validation data set decreases when we get more examples. Whereas the error curve for the training data increases. We want to decrease the cross validation error because it helps us train new examples better.
+	2. Getting smaller sets of features: Decreasing the number of thetas. Aka, making the data fit less. Addresses overfitting or high variance.
+	3. Getting more features: So we are better fitting the data by getting more features. This would help high bias because we want to get a better fit.
+	4. Adding polynomial features: Same idea as above. More polynomial features will result in better fit. High bias.
+	5. Decreasing lambda: Decreasing lambda for regularization would make the thetas have more of an impact. This would result in fitting the data better. So it addresses high bias, underfitting.
+	6. Increasing lamda: Increasing lambda for regularization would make the thetas have less of an impact. This would result in worst fitting of the data. So it addresses high variance.
+
+	Improve high bias-
+		3. Getting more features
+		4. Adding polynomial features
+		5. Decreasing lambda
+	Improve high variance
+		1. Getting more training examples
+		2. Getting smaller sets of features
+		6. Increasing lamda
+
+
+	Neural network with fewer parameters vs more parameters.
+	Fewers Parameters -
+		The model is more prone to underfitting.
+		Computationally cheaper
+	More parameters.
+		The model is more prone to overfitting. 
+		Computationally more expensive.
+		We can mitigate overfitting by increasing lambda (for regularization).
