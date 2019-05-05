@@ -97,4 +97,20 @@ Bias vs Variance
 		We can mitigate overfitting by increasing lambda (for regularization).
 
 ex5 - 
-	The training error and validation error are calculated using the linear regression function. when we select lambda for cross validation, the lambda is only used for calculating the cost and the thetas values. The training error and validation error do not use the lambda value.
+	Learning curve:
+		Plot the training and cross validation error as a function of the training set size
+		From i = 1 to m -
+		1. We find the best thetas that fit the theta for 1:i samples (i is the number of training examples).
+		2. We calculate the train error using the linear regression cost function (lambda = 0).
+		3. We calculate the cross validation error using the linear regression cost function (lambda = 0).
+		The train error and cross validation error are calculated very similarly.
+
+		In the plot, we saw that when the number of training examples is increased, the train error and cross validation error were high. This reflects a high bias problem in the model.
+
+		With the polynomial learning curve (the powers of X), we get a plot where the train error is low but the cross validation error is high. This represents an overfit to the data, a high-variance problem.
+
+		Now we test different values of lambda. We can see the best value is around 3 because cross validation error dips at this point.
+
+		The training error and validation error are calculated using the linear regression function. when we select lambda for cross validation, the lambda is only used for calculating the cost and the thetas values. The training error and validation error do not use the lambda value.
+
+
