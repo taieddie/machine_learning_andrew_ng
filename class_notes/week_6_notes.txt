@@ -1,0 +1,5 @@
+
+Error Analysis -
+	He talks about how he has a set of 500 examples in the cross validation set and the algorithm misclassifies 100 emails. 
+	We would manually examine the 100 errors and try to catagorize them. E.g. What type of email, what cues or features would've helped you classify them correctly.
+	Numerical evaluation, instead, can be used if we want to see how good stemming (process of treating the same word with different forms) would do on the data set vs without stemming. 

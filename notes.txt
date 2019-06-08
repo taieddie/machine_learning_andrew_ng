@@ -114,3 +114,25 @@ ex5 -
 		The training error and validation error are calculated using the linear regression function. when we select lambda for cross validation, the lambda is only used for calculating the cost and the thetas values. The training error and validation error do not use the lambda value.
 
 
+K-means algorithm
+	1. We initialize random centroids.
+	2. Assign centroids with the smallest square distance to the training example.
+	3. For each centroid, calculate the mean of the training example.
+	       For each feature, we sum up all the training examples and divide by the number of training examples.
+	4. The mean of each centroid becomes the new centroid. 
+	5. We do the steps above and iterate X times, which should give us a better result each time.
+		   
+
+ex7 - 
+In 1.4, we have an image that we want to compress. Each pixel of the image is a 24-bit color, represented by 3 8-bit integers. The 3 integers specify the red,green, blue intensities of the pixel. These 3 bit integers will be our features in this training set. 
+We reduce the colors of the image to just 16 colors by creating 16 cluster centroids and running k-mean on them.
+We randomly initialize 16 centroids, each containing a "color" or 3 features, and run the k-mean algorithm N times. 
+The closest centroid of each training sample (ind) is found and we calculate the mean of each centroid based on which training samples were assigned to it.
+The step above is repeating N times.
+Now we have 16 centroids that match our training set. We also have the indices that tell us which centroid each training example belongs to.
+Instead of using each training example, we replace each training example with the centroid that best matches with that training example (ind). So, each pixel is now the centroid that best represents that pixel. Note that each centroid is really just a pixel that has a color, similar to a training example.
+Why is this interesting?
+Each pixel can now only have one of the 16 colors (centroids). So instead of having all combinations of colors, you now only need 16 combinations (or 4 bits).
+
+The assignment claims each pixel will now need 4 bits to store the 16 colors. This is not really true because each pixel is still a color, which is 3 unsigned integers or 24 bits. Unless each pixel can only be defined as one of the 16 colors, then it would make sense.
+
